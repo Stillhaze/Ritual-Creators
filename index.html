@@ -1,0 +1,2075 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ritual creators</title>
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="favicon-256.png">
+<meta name="description" content="51 community creators, click a bubble to meet them.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Ritual Creators">
+<meta property="og:description" content="51 community creators, click a bubble to meet them.">
+<meta property="og:image" content="og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Ritual Creators">
+<meta name="twitter:description" content="51 community creators, click a bubble to meet them.">
+<meta name="twitter:image" content="og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0e1030;
+    --bg2: #1a1550;
+    --card-bg: #ffffff;
+    --text: #1d1d1f;
+    --muted: #6e6e73;
+    --accent: #7c8cff;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+  }
+
+  /* ---------- HERO / BUBBLES ---------- */
+  .hero {
+    position: relative;
+    z-index: 0;
+    min-height: 100vh;
+    overflow: hidden;
+    background: #05060f;
+  }
+  .halftone-fade {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 60%, transparent 96%);
+    mask-image: linear-gradient(180deg, #000 0%, #000 60%, transparent 96%);
+  }
+  .halftone {
+    position: absolute;
+    inset: -25%;
+    background:
+      radial-gradient(circle at 15% 20%, rgba(140,190,255,0.95), transparent 14%),
+      radial-gradient(circle at 45% 10%, rgba(120,170,255,0.8), transparent 10%),
+      radial-gradient(circle at 75% 25%, rgba(160,205,255,0.9), transparent 13%),
+      radial-gradient(circle at 25% 55%, rgba(130,180,255,0.85), transparent 12%),
+      radial-gradient(circle at 60% 60%, rgba(150,195,255,0.9), transparent 15%),
+      radial-gradient(circle at 85% 70%, rgba(120,170,255,0.75), transparent 11%),
+      radial-gradient(circle at 10% 85%, rgba(140,190,255,0.8), transparent 12%),
+      radial-gradient(circle at 50% 90%, rgba(160,205,255,0.85), transparent 13%),
+      radial-gradient(circle at 90% 95%, rgba(130,180,255,0.8), transparent 10%),
+      radial-gradient(circle at 35% 35%, rgba(110,160,255,0.6), transparent 10%);
+    filter: blur(26px);
+    -webkit-mask-image: radial-gradient(circle, #000 42%, transparent 42%);
+    mask-image: radial-gradient(circle, #000 42%, transparent 42%);
+    -webkit-mask-size: 9px 9px;
+    mask-size: 9px 9px;
+    -webkit-mask-repeat: repeat;
+    mask-repeat: repeat;
+    animation: blobDrift 55s ease-in-out infinite alternate;
+    opacity: 0.65;
+  }
+  @keyframes blobDrift {
+    0%   { transform: translate(0,0) scale(1); }
+    50%  { transform: translate(3%, -4%) scale(1.06); }
+    100% { transform: translate(-4%, 3%) scale(1); }
+  }
+  .top-links {
+    position: relative;
+    z-index: 6;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    padding: 22px 20px 0;
+  }
+  .top-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.18);
+    color: #fff;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    backdrop-filter: blur(4px);
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+  .top-links a:hover {
+    background: rgba(124,140,255,0.35);
+    transform: translateY(-2px);
+  }
+  .sound-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    padding: 0;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.18);
+    color: #fff;
+    font-size: 0.95rem;
+    cursor: pointer;
+    backdrop-filter: blur(4px);
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+  .sound-toggle:hover {
+    background: rgba(124,140,255,0.35);
+    transform: translateY(-2px);
+  }
+  .hero-title {
+    position: relative;
+    z-index: 5;
+    text-align: center;
+    padding: 50px 20px 10px;
+    color: #fff;
+  }
+  .hero-title h1 {
+    margin: 0 0 6px;
+    font-size: 2.2rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .hero-title h1 img {
+    height: 1.5em;
+    width: auto;
+    object-fit: contain;
+    vertical-align: middle;
+  }
+  .section-logo {
+    height: 1.4em;
+    width: auto;
+    object-fit: contain;
+    vertical-align: middle;
+  }
+  .hero-title p {
+    margin: 0;
+    color: #b8bcff;
+    font-size: 1rem;
+  }
+  .community-stats {
+    display: inline-flex;
+    margin: 14px auto 0 !important;
+    padding: 7px 18px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 20px;
+    font-size: 0.85rem !important;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    color: #dfe1ff !important;
+  }
+  .bubbles-field {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: 1400px;
+  }
+  .orbit {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    animation-name: orbitSpin;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  }
+  .orbit-arm {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+  }
+  .bubble-counter {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    animation-name: counterSpin;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  }
+  .bubble-center {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%);
+  }
+  @keyframes orbitSpin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
+  @keyframes counterSpin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(-360deg); }
+  }
+  .bubble-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+  }
+  .bubble {
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.1rem;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.35), inset 0 0 0 2px rgba(255,255,255,0.15);
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .bubble-wrap:hover .bubble {
+    transform: scale(1.12);
+    box-shadow: 0 10px 28px rgba(124,140,255,0.5), inset 0 0 0 2px rgba(255,255,255,0.4);
+  }
+  .bubble-nick {
+    color: #dfe1ff;
+    font-size: 0.72rem;
+    background: rgba(255,255,255,0.08);
+    padding: 2px 8px;
+    border-radius: 10px;
+    white-space: nowrap;
+    pointer-events: none;
+  }
+
+  /* ---------- CARDS ---------- */
+  .cards-section {
+    position: relative;
+    z-index: 0;
+    overflow: hidden;
+    background: #000000;
+    padding: 60px 20px 80px;
+  }
+  .stars-bg {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+    background:
+      radial-gradient(ellipse at 50% 0%, rgba(30,30,55,0.65) 0%, transparent 55%),
+      linear-gradient(180deg, #05060f 0%, #000000 40%);
+  }
+  .star-static {
+    position: absolute;
+    border-radius: 50%;
+    background: #fff;
+    animation-name: starTwinkle;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+  }
+  @keyframes starTwinkle {
+    0%, 100% { opacity: 0.15; }
+    50% { opacity: 1; }
+  }
+  .star-fall {
+    position: absolute;
+    border-radius: 50%;
+    background: #fff;
+    animation-name: starFall;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  }
+  .star-fall::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 100%;
+    width: 1px;
+    height: 46px;
+    background: linear-gradient(180deg, transparent, rgba(255,255,255,0.7));
+    transform: translateX(-50%);
+  }
+  @keyframes starFall {
+    0%   { top: -8%; opacity: 0; }
+    8%   { opacity: 1; }
+    92%  { opacity: 1; }
+    100% { top: 108%; opacity: 0; }
+  }
+  /* ---------- ABOUT COMMUNITY ---------- */
+  .about-section {
+    position: relative;
+    overflow: hidden;
+    background-image:
+      linear-gradient(180deg, rgba(5,6,15,0.35) 0%, rgba(8,9,20,0.45) 50%, rgba(5,6,15,0.55) 100%),
+      url('about-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    padding: 64px 20px 60px;
+    text-align: center;
+  }
+  .about-section h2 {
+    color: #fff;
+    margin: 0 0 22px;
+  }
+  .about-content {
+    max-width: 660px;
+    margin: 0 auto;
+    color: #c7c9e6;
+    font-size: 1rem;
+    line-height: 1.75;
+  }
+  .about-content p {
+    margin: 0 0 16px;
+  }
+  .about-content p:last-child {
+    margin-bottom: 0;
+  }
+  .about-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 24px;
+  }
+  .about-links a {
+    padding: 7px 16px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.16);
+    color: #dfe1ff;
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+  .about-links a:hover {
+    background: rgba(124,140,255,0.2);
+    transform: translateY(-2px);
+  }
+  /* ---------- LEADERBOARD ---------- */
+  .leaderboard-section {
+    position: relative;
+    z-index: 0;
+    overflow: hidden;
+    background: #000000;
+    padding: 60px 20px 70px;
+    text-align: center;
+  }
+  .lb-stars-bg {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+    background:
+      radial-gradient(ellipse at 50% 0%, rgba(30,30,55,0.65) 0%, transparent 55%),
+      linear-gradient(180deg, #05060f 0%, #000000 40%);
+  }
+  .lb-cutout {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background-image:
+      linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.55) 55%, rgba(0,0,0,0.75) 100%),
+      url('leaderboard-fg.webp');
+    background-size: cover;
+    background-position: bottom center;
+    background-repeat: no-repeat;
+    pointer-events: none;
+  }
+  .leaderboard-content {
+    position: relative;
+    z-index: 1;
+  }
+  .leaderboard-section h2 {
+    color: #fff;
+    margin: 0 0 8px;
+  }
+  .leaderboard-sub {
+    color: #9a9db8;
+    margin: 0 0 24px;
+    font-size: 0.95rem;
+  }
+  .leaderboard-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 26px;
+  }
+  .leaderboard-tab {
+    padding: 8px 18px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.18);
+    color: #dfe1ff;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+  .leaderboard-tab:hover {
+    transform: translateY(-2px);
+  }
+  .leaderboard-tab.active {
+    background: linear-gradient(90deg, #ac6d37, #e3a561);
+    color: #1a0f06;
+    border-color: transparent;
+  }
+  .leaderboard-list {
+    max-width: 620px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .lb-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 10px 16px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 14px;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+    text-align: left;
+  }
+  .lb-row:hover {
+    background: rgba(172,109,55,0.18);
+    transform: translateX(4px);
+  }
+  .lb-rank {
+    width: 30px;
+    flex-shrink: 0;
+    font-weight: 800;
+    font-size: 1.1rem;
+    color: #9a9db8;
+    text-align: center;
+  }
+  .lb-row.top1 .lb-rank { color: #ffd54f; }
+  .lb-row.top2 .lb-rank { color: #d7d7d7; }
+  .lb-row.top3 .lb-rank { color: #e39a5c; }
+  .lb-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+    box-shadow: 0 0 0 2px rgba(255,255,255,0.15);
+  }
+  .lb-name {
+    flex: 1;
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.95rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .lb-value {
+    color: #e3a561;
+    font-weight: 700;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+  }
+  .role-filters {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin: 0 0 30px;
+  }
+  .role-filter-btn {
+    padding: 8px 16px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.18);
+    color: #dfe1ff;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+  .role-filter-btn:hover {
+    transform: translateY(-2px);
+  }
+  .role-filter-btn.active {
+    background: linear-gradient(90deg, #7c8cff, #b8bcff);
+    color: #0e1030;
+    border-color: transparent;
+  }
+  .cards-section h2 {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin: 0 0 30px;
+    color: #fff;
+  }
+  .designs-section {
+    position: relative;
+    overflow: hidden;
+    background-image:
+      linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.6) 55%, rgba(0,0,0,0.92) 100%),
+      url('designs-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    padding: 70px 20px 90px;
+    text-align: center;
+  }
+  .designs-section h2 {
+    position: relative;
+    z-index: 2;
+    color: #fff;
+    margin: 0 0 10px;
+  }
+  .designs-section .designs-sub {
+    position: relative;
+    z-index: 2;
+    color: #9a9db8;
+    margin: 0 0 34px;
+    font-size: 0.95rem;
+  }
+  .designs-rows {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  .designs-row {
+    position: relative;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%);
+    mask-image: linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%);
+  }
+  .designs-track {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    width: max-content;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  }
+  .designs-row.row-rtl .designs-track {
+    animation-name: designsScrollLeft;
+    animation-duration: 70s;
+  }
+  .designs-row.row-ltr .designs-track {
+    animation-name: designsScrollRight;
+    animation-duration: 70s;
+  }
+  @keyframes designsScrollLeft {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+  @keyframes designsScrollRight {
+    from { transform: translateX(-50%); }
+    to   { transform: translateX(0); }
+  }
+  .designs-track img {
+    height: 150px;
+    width: auto;
+    max-width: 260px;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    flex-shrink: 0;
+  }
+  .designs-track img:hover {
+    transform: translateY(-4px) scale(1.04);
+    box-shadow: 0 10px 24px rgba(124,140,255,0.35), 0 0 0 1px rgba(255,255,255,0.25);
+  }
+  .designs-empty {
+    position: relative;
+    z-index: 2;
+    max-width: 560px;
+    margin: 0 auto;
+    padding: 40px 24px;
+    border: 1.5px dashed rgba(255,255,255,0.25);
+    border-radius: 16px;
+    color: rgba(255,255,255,0.55);
+    font-size: 0.95rem;
+  }
+  .grid {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 22px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .card {
+    background: #0a0a0a;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, outline 0.2s ease;
+    scroll-margin-top: 30px;
+    cursor: pointer;
+  }
+  .card:hover {
+    transform: translateY(-4px);
+  }
+  .card.highlight {
+    outline: 3px solid #fff;
+    transform: translateY(-4px);
+  }
+  .card > img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+    background: #000;
+  }
+  .card-body {
+    padding: 14px 16px 18px;
+    background: var(--card-accent-bg, linear-gradient(165deg, #333 0%, #000 80%));
+  }
+  .card-body h3 { margin: 0 0 2px; font-size: 1rem; color: #fff; text-shadow: 0 1px 4px rgba(0,0,0,0.8); }
+  .card-body .role { margin: 0 0 8px; color: rgba(255,255,255,0.85); font-size: 1rem; font-weight: 400; font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; letter-spacing: 0.1px; display: flex; align-items: center; gap: 6px; text-shadow: 0 1px 4px rgba(0,0,0,0.8); }
+  .role-emoji {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    display: inline-block;
+    background: none;
+    vertical-align: middle;
+    filter: drop-shadow(0 1px 3px rgba(0,0,0,0.6));
+  }
+  .card-body p { margin: 0; color: rgba(255,255,255,0.85); font-size: 0.85rem; line-height: 1.4; text-shadow: 0 1px 4px rgba(0,0,0,0.8); }
+  .card-body p + p { margin-top: 4px; }
+
+  /* ---------- MODAL PROFILE ---------- */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(5,6,15,0.75);
+    backdrop-filter: blur(4px);
+    z-index: 100;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal-box {
+    background: #0a0a0a;
+    border-radius: 20px;
+    max-width: 380px;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+  }
+  .modal-close {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    background: rgba(0,0,0,0.5);
+    color: #fff;
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    font-size: 1.1rem;
+    cursor: pointer;
+    z-index: 2;
+  }
+  .modal-box > img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    display: block;
+    background: #000;
+  }
+  .modal-body {
+    padding: 18px 22px 24px;
+    background: var(--card-accent-bg, linear-gradient(165deg, #333 0%, #000 80%));
+  }
+  .modal-body h3 { margin: 0 0 4px; font-size: 1.3rem; color: #fff; text-shadow: 0 1px 4px rgba(0,0,0,0.8); }
+  .modal-body .role { margin: 0 0 12px; color: rgba(255,255,255,0.85); font-weight: 400; font-size: 1.1rem; font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; letter-spacing: 0.1px; display: flex; align-items: center; gap: 6px; text-shadow: 0 1px 4px rgba(0,0,0,0.8); }
+  .modal-body p { margin: 0; color: rgba(255,255,255,0.85); font-size: 0.92rem; line-height: 1.5; text-shadow: 0 1px 4px rgba(0,0,0,0.8); }
+  .modal-body p + p { margin-top: 6px; }
+  .twitter-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 14px;
+    padding: 8px 14px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 20px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: background 0.2s ease;
+  }
+  .twitter-link:hover {
+    background: rgba(255,255,255,0.2);
+  }
+  .modal-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 14px;
+  }
+  .modal-actions .twitter-link {
+    margin-top: 0;
+  }
+  .share-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    background: rgba(124,140,255,0.18);
+    border: 1px solid rgba(124,140,255,0.5);
+    border-radius: 20px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: background 0.2s ease;
+  }
+  .share-link:hover {
+    background: rgba(124,140,255,0.35);
+  }
+  .download-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 20px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+  .download-link:hover {
+    background: rgba(255,255,255,0.2);
+  }
+  .pointer-note {
+    position: absolute;
+    left: 3%;
+    top: 24%;
+    z-index: 6;
+    color: #fff;
+    text-align: left;
+    pointer-events: none;
+  }
+  .pointer-note .note-text {
+    display: block;
+    font-family: 'Caveat', cursive;
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.1;
+    transform: rotate(-4deg);
+    text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+    white-space: nowrap;
+  }
+  .pointer-note svg {
+    display: block;
+    margin: 2px 0 0 18px;
+  }
+  .self-tag {
+    font-family: 'Caveat', cursive;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #fff;
+    transform: rotate(-3deg);
+    text-shadow: 0 2px 8px rgba(0,0,0,0.7);
+    margin: 0 0 6px;
+  }
+  .section-divider {
+    height: 2px;
+    width: min(560px, 70%);
+    margin: 0 auto;
+    background: linear-gradient(90deg, transparent, #7c8cff, #b8bcff, #7c8cff, transparent);
+    box-shadow: 0 0 16px 3px rgba(124,140,255,0.55);
+    position: relative;
+    z-index: 3;
+  }
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="halftone-fade"><div class="halftone"></div></div>
+  <div class="top-links">
+    <a href="https://x.com/ritualnet" target="_blank" rel="noopener">𝕏 Ritualnet</a>
+    <a href="https://x.com/ritualfnd" target="_blank" rel="noopener">𝕏 Ritual Foundation</a>
+    <a href="https://discord.gg/ritual-net" target="_blank" rel="noopener">Discord</a>
+    <a href="https://ritual.net/" target="_blank" rel="noopener">ritual.net</a>
+    <button id="sound-toggle" class="sound-toggle" type="button" title="Toggle click sound">🔊</button>
+  </div>
+  <div class="hero-title">
+    <h1>Ritual creators <img src="logo.png" alt="Ritual logo"></h1>
+    <p>Click a bubble to open a profile</p>
+    <p class="community-stats" id="community-stats"></p>
+  </div>
+  <div class="pointer-note">
+    <span class="note-text">This could be you :)</span>
+    <svg width="130" height="80" viewBox="0 0 130 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M8,12 C50,8 70,50 118,58" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+      <path d="M118,58 L104,47" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+      <path d="M118,58 L102,63" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+    </svg>
+  </div>
+  <div class="bubbles-field" id="bubbles-field"></div>
+</section>
+
+<div class="section-divider"></div>
+
+<section class="designs-section">
+  <h2>Ritual Community Designs</h2>
+  <p class="designs-sub">Fan art and designs made by the community</p>
+  <div class="designs-rows" id="designs-rows"></div>
+</section>
+
+<div class="section-divider"></div>
+
+<section class="leaderboard-section">
+  <div class="lb-stars-bg" id="lb-stars-bg"></div>
+  <div class="lb-cutout"></div>
+  <div class="leaderboard-content">
+    <h2>Leaderboard</h2>
+    <p class="leaderboard-sub">The most active creators in the community</p>
+    <div class="leaderboard-tabs">
+      <button class="leaderboard-tab active" data-metric="messages" type="button">By Messages</button>
+      <button class="leaderboard-tab" data-metric="content" type="button">By Content</button>
+    </div>
+    <div class="leaderboard-list" id="leaderboard-list"></div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<section class="cards-section">
+  <div class="stars-bg" id="stars-bg"></div>
+  <h2>51 Ritual Creators <img src="logo.png" alt="Ritual logo" class="section-logo"></h2>
+  <div class="role-filters" id="role-filters"></div>
+  <div class="grid" id="cards-grid"></div>
+</section>
+
+<div class="section-divider"></div>
+
+<section class="about-section">
+  <h2>About the Community</h2>
+  <div class="about-content">
+    <p>Ritual is a lab for autonomous intelligence — building the infrastructure that lets autonomous agents persist, hold and spend their own money, keep secrets under adversarial conditions, and keep operating long after the person who launched them has moved on. That work spans four research frontiers — Artificial Intelligence, Mechanism Design, Systems, and Cryptography — and comes together in Ritual Chain, the execution layer where that autonomy becomes real.</p>
+    <p>This page belongs to the people building that future alongside the core team: the Ritual Creators. Ritualists, Rittys, Radiant Ritualists, Mods, and Team members who share ideas, make content, and grow the community every day across Discord, X, and beyond. Every creator on this page is a real member of that community.</p>
+  </div>
+  <div class="about-links">
+    <a href="https://ritual.net/vision" target="_blank" rel="noopener">Vision</a>
+    <a href="https://docs.ritualfoundation.org" target="_blank" rel="noopener">Docs</a>
+    <a href="https://github.com/ritual-net" target="_blank" rel="noopener">GitHub</a>
+    <a href="https://discord.gg/ritual-net" target="_blank" rel="noopener">Discord</a>
+  </div>
+</section>
+
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal-box" id="modal-box"></div>
+</div>
+
+<script>
+  // ---- black starfield background (twinkling + falling stars), reused for the cards section and leaderboard ----
+  function createStarfield(wrapId, staticCount, fallCount) {
+    const wrap = document.getElementById(wrapId);
+    if (!wrap) return;
+
+    // small static twinkling stars scattered across the whole background
+    for (let i = 0; i < staticCount; i++) {
+      const s = document.createElement("div");
+      s.className = "star-static";
+      const size = 1 + Math.random() * 2;
+      s.style.left = Math.random() * 100 + "%";
+      s.style.top = Math.random() * 100 + "%";
+      s.style.width = size + "px";
+      s.style.height = size + "px";
+      s.style.boxShadow = `0 0 ${2 + size * 2}px rgba(255,255,255,0.8)`;
+      s.style.animationDuration = (1.5 + Math.random() * 3.5) + "s";
+      s.style.animationDelay = "-" + (Math.random() * 4) + "s";
+      wrap.appendChild(s);
+    }
+
+    // bigger stars falling from top to bottom, like a meteor shower
+    for (let i = 0; i < fallCount; i++) {
+      const s = document.createElement("div");
+      s.className = "star-fall";
+      const size = 1.5 + Math.random() * 2;
+      s.style.left = Math.random() * 100 + "%";
+      s.style.width = size + "px";
+      s.style.height = size + "px";
+      s.style.boxShadow = `0 0 ${3 + size * 3}px rgba(255,255,255,0.9)`;
+      s.style.animationDuration = (5 + Math.random() * 8) + "s";
+      s.style.animationDelay = "-" + (Math.random() * 12) + "s";
+      wrap.appendChild(s);
+    }
+  }
+  createStarfield("stars-bg", 220, 70);
+  createStarfield("lb-stars-bg", 160, 55);
+
+  // ---- soft click chime (Web Audio API, no external audio file needed) ----
+  const soundToggleBtn = document.getElementById("sound-toggle");
+  let soundOn = localStorage.getItem("ritual-sound") !== "off";
+  let audioCtx = null;
+
+  function updateSoundBtn() {
+    if (soundToggleBtn) soundToggleBtn.textContent = soundOn ? "🔊" : "🔇";
+  }
+  updateSoundBtn();
+
+  if (soundToggleBtn) {
+    soundToggleBtn.addEventListener("click", () => {
+      soundOn = !soundOn;
+      localStorage.setItem("ritual-sound", soundOn ? "on" : "off");
+      updateSoundBtn();
+    });
+  }
+
+  function playChime() {
+    if (!soundOn) return;
+    try {
+      if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      const ctx = audioCtx;
+      const now = ctx.currentTime;
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = "sine";
+      osc.frequency.setValueAtTime(720, now);
+      osc.frequency.exponentialRampToValueAtTime(1080, now + 0.09);
+      gain.gain.setValueAtTime(0.0001, now);
+      gain.gain.exponentialRampToValueAtTime(0.14, now + 0.02);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.28);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start(now);
+      osc.stop(now + 0.3);
+    } catch (e) { /* ignore audio errors */ }
+  }
+
+  const TOTAL = 51;
+  const palette = ["#7c8cff","#ff8a65","#4dd0e1","#ba68c8","#81c784","#f06292","#ffd54f","#64b5f6"];
+
+  const bubblesField = document.getElementById("bubbles-field");
+  const cardsGrid = document.getElementById("cards-grid");
+  const designsRows = document.getElementById("designs-rows");
+
+  // Community fan-art / designs. Add entries like { image: "designs/29.webp" } as they come in.
+  const designs = [];
+  for (let i = 1; i <= 28; i++) designs.push({ image: `designs/design${i}.webp` });
+
+  function renderDesigns() {
+    if (!designsRows) return;
+    if (designs.length === 0) {
+      designsRows.innerHTML = `<div class="designs-empty">More designs from the community coming soon.</div>`;
+      return;
+    }
+    // split into two rows, alternating
+    const rowA = designs.filter((_, idx) => idx % 2 === 0);
+    const rowB = designs.filter((_, idx) => idx % 2 === 1);
+
+    function buildRow(items, extraClass) {
+      // duplicate the items so the track can loop seamlessly from -50% back to 0
+      const imgsHtml = items.map(d => `<img src="${d.image}" alt="${d.alt || 'Community design'}" loading="lazy">`).join("");
+      return `
+        <div class="designs-row ${extraClass}">
+          <div class="designs-track">${imgsHtml}${imgsHtml}</div>
+        </div>
+      `;
+    }
+
+    designsRows.innerHTML = buildRow(rowA, "row-rtl") + buildRow(rowB, "row-ltr");
+  }
+  renderDesigns();
+
+  function rand(min, max) { return Math.random() * (max - min) + min; }
+
+  // Custom data per person. Key = number (1..50). Missing fields fall back to placeholders.
+  const overrides = {
+    1: {
+      nick: "!Ma1lse_",
+      role: "Ritualist",
+      desc: [
+        "4,422 Messages",
+        "48 content"
+      ],
+      photo: "photos/1.jpg", // photo path — drop the file here once saved
+      accent: "#e21414", // dominant avatar color -> used for the card/profile gradient tint
+      bgImage: "backgrounds/1.png", // themed background art behind the card text
+      roleEmoji: "emoji/ritualist.png", // small icon shown after the role name
+      twitter: "https://x.com/Ma1lse_" // shown as a link inside the profile popup
+    },
+    2: {
+      nick: "DimKat",
+      role: "Ritualist",
+      photo: "photos/2.jpg",
+      desc: [
+        "14,153 Messages",
+        "138 content"
+      ],
+      accent: "#0f8f8f", // teal, matching the sloth's background
+      bgImage: "backgrounds/2.png",
+      roleEmoji: "emoji/ritualist.png",
+      twitter: "https://x.com/DimkatG"
+    },
+    3: {
+      nick: "Stillhaze",
+      role: "Ritty",
+      photo: "photos/3.jpg",
+      desc: [
+        "19,646 Messages",
+        "162 content"
+      ],
+      accent: "#4a4a4a", // gray -> black gradient, matching the black & white pfp (keeps white text readable)
+      bgImage: "backgrounds/4.png", // dark night/butterflies background
+      roleEmoji: "emoji/ritty.png",
+      twitter: "https://x.com/StillhazeE",
+      selfTag: "Yes, this is me :)"
+    },
+    4: {
+      nick: "Meison",
+      role: "Radiant Ritualist",
+      photo: "photos/4.jpg",
+      desc: [
+        "61,115 Messages",
+        "225 Content"
+      ],
+      accent: "#2a2a2a", // dark neutral base
+      bgImage: "backgrounds/3.png", // cat-ear background, matching the white cat avatar
+      nickGradient: "linear-gradient(90deg, #fff59d, #ffb300)", // yellow gradient nick text
+      twitter: "https://x.com/meison_mswen"
+    },
+    5: {
+      nick: "Cryptic Ream",
+      role: "Ritty",
+      photo: "photos/5.jpg",
+      desc: [
+        "13,219 Messages",
+        "149 content"
+      ],
+      accent: "#8a8a8a", // gray, matching the light gray/black avatar art
+      bgImage: "backgrounds/5.png",
+      twitter: "https://x.com/Faizan626371"
+    },
+    6: {
+      nick: "TiAdler",
+      role: "Ritty",
+      photo: "photos/6.jpg",
+      desc: [
+        "15,198 Messages",
+        "228 content"
+      ],
+      accent: "#7b74d1", // purple, matching the flames-on-purple avatar art
+      bgImage: "backgrounds/6.png",
+      twitter: "https://x.com/Neitenoz26"
+    },
+    7: {
+      nick: "Technik",
+      role: "Ritualist",
+      photo: "photos/7.jpg",
+      desc: [
+        "44,072 Messages",
+        "179 content"
+      ],
+      accent: "#8a7a5c", // tan, matching the desert-tone avatar art
+      bgImage: "backgrounds/7.png",
+      twitter: "https://x.com/technik4959"
+    },
+    8: {
+      nick: "Weeklang",
+      role: "Ritty",
+      photo: "photos/8.jpg",
+      desc: [
+        "23,869 Messages",
+        "123 content"
+      ],
+      accent: "#c65f9e", // pink, matching the avatar/background art
+      bgImage: "backgrounds/8.png",
+      twitter: "https://x.com/Yurii_week"
+    },
+    9: {
+      nick: "Maharshi",
+      role: "Ritualist",
+      photo: "photos/9.jpg",
+      desc: [
+        "48,244 Messages",
+        "327 content"
+      ],
+      accent: "#2f5c3f", // green, matching the avatar/background art
+      bgImage: "backgrounds/9.png",
+      twitter: "https://x.com/Devarshi8539"
+    },
+    10: {
+      nick: "Annae",
+      role: "Ritualist",
+      photo: "photos/10.jpg",
+      desc: [
+        "52,000 Messages",
+        "172 content"
+      ],
+      accent: "#e08bb0", // pink, matching the floral background art
+      bgImage: "backgrounds/10.png",
+      twitter: "https://x.com/Anna272493"
+    },
+    11: {
+      nick: "STEP",
+      role: "Ritualist",
+      photo: "photos/11.jpg",
+      desc: [
+        "9,640 Messages",
+        "178 content"
+      ],
+      accent: "#9a9a92", // light gray, matching the trading-chart background art
+      bgImage: "backgrounds/11.png",
+      twitter: "https://x.com/sterjke"
+    },
+    12: {
+      nick: "Ken Kaneki",
+      role: "Ritty",
+      photo: "photos/12.jpg",
+      desc: [
+        "23,363 Messages",
+        "154 content"
+      ],
+      accent: "#8a1f1f", // dark red, matching the background art
+      bgImage: "backgrounds/12.png",
+      twitter: "https://x.com/Fakhirgb"
+    },
+    13: {
+      nick: "AnnaBEL",
+      role: "Ritty",
+      photo: "photos/13.jpg",
+      desc: [
+        "8,957 Messages",
+        "186 content"
+      ],
+      accent: "#1e7a3c", // green glow, matching the background art
+      bgImage: "backgrounds/13.png",
+      twitter: "https://x.com/anna000_bel"
+    },
+    14: {
+      nick: "VanStrong",
+      role: "Ritty",
+      photo: "photos/14.jpg",
+      desc: [
+        "19,021 Messages",
+        "230 content"
+      ],
+      accent: "#3f5a44", // forest green, matching the background art
+      bgImage: "backgrounds/14.png",
+      twitter: "https://x.com/EvanBucin"
+    },
+    15: {
+      nick: "John",
+      role: "Ritualist",
+      photo: "photos/15.jpg",
+      desc: [
+        "51,169 Messages",
+        "280 content"
+      ],
+      accent: "#b06a7f", // dusty pink, matching the background art
+      bgImage: "backgrounds/15.png",
+      twitter: "https://x.com/johntolll"
+    },
+    16: {
+      nick: "SARTHAK",
+      role: "Ritty",
+      photo: "photos/16.jpg",
+      desc: [
+        "36,714 Messages",
+        "176 content"
+      ],
+      accent: "#4a7cab", // blue, matching the background art
+      bgImage: "backgrounds/16.png",
+      twitter: "https://x.com/SarthakCt"
+    },
+    17: {
+      nick: "Daniyel",
+      role: "Ritualist",
+      photo: "photos/17.jpg",
+      desc: [
+        "8,163 Messages",
+        "295 content"
+      ],
+      accent: "#3a3a3a", // grayscale, matching the comic-style background art
+      bgImage: "backgrounds/17.png",
+      twitter: "https://x.com/nftdaniyel"
+    },
+    18: {
+      nick: "DayzZzer",
+      role: "Ritty",
+      photo: "photos/18.jpg",
+      desc: [
+        "10,734 Messages",
+        "152 content"
+      ],
+      accent: "#c9c9c0", // light sketch tone, matching the background art
+      bgImage: "backgrounds/18.png",
+      twitter: "https://x.com/Dayzer__"
+    },
+    19: {
+      nick: "Tanjiro",
+      role: "Ritualist",
+      photo: "photos/19.jpg",
+      desc: [
+        "29,014 Messages",
+        "193 content"
+      ],
+      accent: "#7a1f1f", // dark red/fire tone, matching the background art
+      bgImage: "backgrounds/19.png",
+      twitter: "https://x.com/tanjiro3060"
+    },
+    20: {
+      nick: "BIEN",
+      role: "Ritty",
+      photo: "photos/20.jpg",
+      desc: [
+        "23,535 Messages",
+        "216 content"
+      ],
+      accent: "#6f8a5c", // green, matching the background art
+      bgImage: "backgrounds/20.png",
+      twitter: "https://x.com/biennyqt"
+    },
+    21: {
+      nick: "Sofee",
+      role: "Ritty",
+      photo: "photos/21.jpg",
+      desc: [
+        "15,187 Messages",
+        "105 content"
+      ],
+      accent: "#b31217", // red, matching the clown-face avatar/bg
+      bgImage: "backgrounds/21.png",
+      twitter: "https://x.com/VanLav06000598"
+    },
+    22: {
+      nick: "Tutufly",
+      role: "Ritualist",
+      photo: "photos/22.jpg",
+      desc: [
+        "30,037 Messages",
+        "227 content"
+      ],
+      accent: "#3a3a40", // dark charcoal, matching hair/outfit in avatar/bg
+      bgImage: "backgrounds/22.png",
+      twitter: "https://x.com/tutufly_yy"
+    },
+    23: {
+      nick: "Ashish",
+      role: "Ritty",
+      photo: "photos/23.jpg",
+      desc: [
+        "8,900 Messages",
+        "506 content"
+      ],
+      accent: "#e0c122", // yellow, matching the crown/candle art
+      bgImage: "backgrounds/23.png",
+      twitter: "https://x.com/Ashishc96927071"
+    },
+    24: {
+      nick: "0xStacy",
+      role: "Ritualist",
+      photo: "photos/24.jpg",
+      desc: [
+        "12,872 Messages",
+        "136 content"
+      ],
+      accent: "#7b2ff7", // purple, matching the masked figure art
+      bgImage: "backgrounds/24.png",
+      twitter: "https://x.com/0xStacy1"
+    },
+    25: {
+      nick: "MG",
+      role: "Ritualist",
+      photo: "photos/25.jpg",
+      desc: [
+        "20,674 Messages",
+        "245 content"
+      ],
+      accent: "#e8c93b", // yellow, matching the Pikachu-style art
+      bgImage: "backgrounds/25.png",
+      twitter: "https://x.com/mingyu_wtf"
+    },
+    26: {
+      nick: "Raj",
+      role: "Ritty",
+      photo: "photos/26.jpg",
+      desc: [
+        "14,672 Messages",
+        "133 content"
+      ],
+      accent: "#a13fd6", // pink/purple, matching the anime avatar
+      bgImage: "backgrounds/26.png",
+      twitter: "https://x.com/rajlol01"
+    },
+    27: {
+      nick: "SaintEx✞",
+      role: "Ritty",
+      photo: "photos/27.jpg",
+      desc: [
+        "9,168 Messages",
+        "172 content"
+      ],
+      accent: "#f0a530", // yellow/orange, matching the bat-cat art
+      bgImage: "backgrounds/27.png",
+      twitter: "https://x.com/SaintEx100"
+    },
+    28: {
+      nick: "ITACHI | SHARINGAN",
+      role: "Ritty",
+      photo: "photos/28.jpg",
+      desc: [
+        "15,937 Messages",
+        "222 Content"
+      ],
+      accent: "#4a4d55", // dark gray/red, matching the Akatsuki art
+      bgImage: "backgrounds/28.png",
+      twitter: "https://x.com/Kompot1Kmpot1"
+    },
+    29: {
+      nick: "Jez",
+      role: "Mod",
+      photo: "photos/29.jpg",
+      desc: [
+        "6,122 Messages"
+      ],
+      accent: "#4a7a3a", // green, matching the mystic art
+      bgImage: "backgrounds/29.png",
+      twitter: "https://x.com/Jez_Cryptoz"
+    },
+    30: {
+      nick: "Majorproject",
+      role: "Mod",
+      photo: "photos/30.jpg",
+      desc: [
+        "12,494 Messages"
+      ],
+      accent: "#3fb0a8", // teal, matching the chibi art
+      bgImage: "backgrounds/30.png",
+      twitter: "https://x.com/Majorproject5"
+    },
+    31: {
+      nick: "Cutie Eric",
+      role: "Radiant Ritualist",
+      photo: "photos/31.jpg",
+      desc: [
+        "20,650 Messages",
+        "62 content"
+      ],
+      accent: "#b7a897", // warm neutral beige, matching the photo
+      bgImage: "backgrounds/31.png",
+      twitter: "https://x.com/ericgudboy"
+    },
+    32: {
+      nick: "Intuition",
+      role: "Radiant Ritualist",
+      photo: "photos/32.jpg",
+      desc: [
+        "57,660 Messages",
+        "354 content"
+      ],
+      accent: "#2fd9a8", // teal/green, matching the cat art
+      bgImage: "backgrounds/32.png",
+      twitter: "https://x.com/Intuitionweb3"
+    },
+    33: {
+      nick: "na2raaaa",
+      role: "Ritty",
+      photo: "photos/33.jpg",
+      desc: [
+        "10,150 Messages",
+        "134 content"
+      ],
+      accent: "#4a5b8c", // purple/blue, matching the art
+      bgImage: "backgrounds/33.png",
+      twitter: "https://x.com/na2raaaa"
+    },
+    34: {
+      nick: "FFINN",
+      role: "Ritty",
+      photo: "photos/34.jpg",
+      desc: [
+        "11,876 Messages",
+        "84 content"
+      ],
+      accent: "#4a4a6e", // purple, matching the banner art
+      bgImage: "backgrounds/34.png",
+      twitter: "https://x.com/ffffin9"
+    },
+    35: {
+      nick: "Oluwasegun",
+      role: "Ritualist",
+      photo: "photos/35.jpg",
+      desc: [
+        "27,055 Messages",
+        "101 content"
+      ],
+      accent: "#e0b04a", // warm gold, matching the Superman art
+      bgImage: "backgrounds/35.png",
+      twitter: "https://x.com/Oluwasegun1334"
+    },
+    36: {
+      nick: "Josh",
+      role: "Team",
+      photo: "photos/36.jpg",
+      desc: [
+        "3,939 Messages"
+      ],
+      accent: "#3a3a3a", // dark neutral
+      bgImage: "backgrounds/36.png",
+      twitter: "https://x.com/joshsimenhoff"
+    },
+    37: {
+      nick: "Synedclover",
+      role: "Radiant Ritualist",
+      photo: "photos/37.jpg",
+      desc: [
+        "1,623 Messages",
+        "96 content"
+      ],
+      accent: "#5a9bd8", // sky blue, matching the art
+      bgImage: "backgrounds/37.png",
+      twitter: "https://x.com/synedclover"
+    },
+    38: {
+      nick: "1DLE",
+      role: "Ritualist",
+      photo: "photos/38.jpg",
+      desc: [
+        "12,139 Messages",
+        "145 content"
+      ],
+      accent: "#4a2f5c", // dark purple, matching the hooded figure art
+      bgImage: "backgrounds/38.png",
+      twitter: "https://x.com/1_D_L_E"
+    },
+    39: {
+      nick: "zarra",
+      role: "Ritty",
+      photo: "photos/39.jpg",
+      desc: [
+        "33,276 Messages",
+        "166 content"
+      ],
+      accent: "#e8a2a0", // pink, matching the art
+      bgImage: "backgrounds/39.png",
+      twitter: "https://x.com/DzaRra234"
+    },
+    40: {
+      nick: "GRANDAD",
+      role: "Ritualist",
+      photo: "photos/40.jpg",
+      desc: [
+        "13,922 Messages",
+        "629 content"
+      ],
+      accent: "#2fa84f", // matrix green, matching the banner art
+      bgImage: "backgrounds/40.png",
+      twitter: "https://x.com/YoungestGrandad"
+    },
+    41: {
+      nick: "Ruslana",
+      role: "Ritualist",
+      photo: "photos/41.jpg",
+      desc: [
+        "16,500 Messages",
+        "149 content"
+      ],
+      accent: "#a06fd6", // purple, matching the art
+      bgImage: "backgrounds/41.png",
+      twitter: "https://x.com/Ruslana_L22"
+    },
+    42: {
+      nick: "Mr Lil Pop",
+      role: "Ritualist",
+      photo: "photos/42.jpg",
+      desc: [
+        "8,958 Messages",
+        "264 content"
+      ],
+      accent: "#e01818", // red, matching the art
+      bgImage: "backgrounds/42.png",
+      twitter: "https://x.com/MrL0llip0p"
+    },
+    43: {
+      nick: "Emeli",
+      role: "Ritty",
+      photo: "photos/43.jpg",
+      desc: [
+        "13,657 Messages",
+        "143 content"
+      ],
+      accent: "#e8a0b8", // pink, matching the art
+      bgImage: "backgrounds/43.png",
+      twitter: "https://x.com/emeli_mag"
+    },
+    44: {
+      nick: "Kenil",
+      role: "Ritualist",
+      photo: "photos/44.jpg",
+      desc: [
+        "2,915 Messages",
+        "192 content"
+      ],
+      accent: "#5b85c9", // blue, matching the art
+      bgImage: "backgrounds/44.png",
+      twitter: "https://x.com/vekariya_kenil"
+    },
+    45: {
+      nick: "whitesocks",
+      role: "Radiant Ritualist",
+      photo: "photos/45.jpg",
+      desc: [
+        "4,408 Messages",
+        "8 content"
+      ],
+      accent: "#8a5a3a", // brown, matching the art
+      bgImage: "backgrounds/45.png",
+      twitter: "https://x.com/whitesocks256"
+    },
+    46: {
+      nick: "Kai Dranzer",
+      role: "Ritty",
+      photo: "photos/46.jpg",
+      desc: [
+        "13,921 Messages",
+        "96 content"
+      ],
+      accent: "#3a6fa8", // blue, matching the phoenix art
+      bgImage: "backgrounds/46.png",
+      twitter: "https://x.com/kaicrypt00"
+    },
+    47: {
+      nick: "Antgeo",
+      role: "Ritualist",
+      photo: "photos/47.jpg",
+      desc: [
+        "37,777 Messages",
+        "129 content"
+      ],
+      accent: "#3a3a3a", // dark gray, matching the smoky art
+      bgImage: "backgrounds/47.png",
+      twitter: "https://x.com/antgeo13"
+    },
+    48: {
+      nick: "JT",
+      role: "Ritualist",
+      photo: "photos/48.jpg",
+      desc: [
+        "50,474 Messages",
+        "305 content"
+      ],
+      accent: "#2a2a2a", // dark neutral, matching the moody art
+      bgImage: "backgrounds/48.png",
+      twitter: "https://x.com/AbrahamJT9"
+    },
+    49: {
+      nick: "cripson",
+      role: "Ritualist",
+      photo: "photos/49.jpg",
+      desc: [
+        "12,689 Messages",
+        "277 content"
+      ],
+      accent: "#3fa878", // teal/green, matching the art
+      bgImage: "backgrounds/49.png",
+      twitter: "https://x.com/Cripson01"
+    },
+    50: {
+      nick: "ByteOrakel",
+      role: "Ritty",
+      photo: "photos/50.jpg",
+      desc: [
+        "9,973 Messages",
+        "172 content"
+      ],
+      accent: "#c9c9c9", // gray/black, matching the hooded figure art
+      bgImage: "backgrounds/50.png",
+      twitter: "https://x.com/what_is_crypto0"
+    },
+    51: {
+      nick: "IVAN",
+      role: "Radiant Ritualist",
+      photo: "photos/51.jpg",
+      desc: [
+        "133 Messages",
+        "24 content"
+      ],
+      accent: "#f0c030", // yellow, matching the penguin art
+      bgImage: "backgrounds/51.png",
+      twitter: "https://x.com/0ooooo0"
+    }
+  };
+
+  // Gradient text color per role name — same role name always gets the same color automatically.
+  function roleGradient(role) {
+    if (role === "Ritualist") return "linear-gradient(90deg, #bce84f, #3aab18)"; // salad green (slightly darker)
+    if (role === "Ritty") return "linear-gradient(90deg, #c99bff, #7b2ff7)"; // purple
+    if (role === "Radiant Ritualist") return "linear-gradient(90deg, #fff59d, #ffb300)"; // yellow
+    if (role === "Mod") return "linear-gradient(90deg, #f4c9a3, #c17a52)"; // skin/flesh tone
+    if (role === "Team") return "linear-gradient(90deg, #3aab18, #3aab18)"; // plain green, no gradient
+    return null;
+  }
+  // Icon shown after the role name — same role name always gets the same icon automatically.
+  function roleIcon(role) {
+    if (role === "Ritualist") return "emoji/ritualist.png"; // flame
+    if (role === "Ritty") return "emoji/ritty.png"; // candle
+    if (role === "Radiant Ritualist") return "emoji/radiant.png"; // stars
+    if (role === "Mod") return "emoji/mod.png"; // crossed swords
+    if (role === "Team") return "emoji/team.png"; // Ritual logo
+    return null;
+  }
+  function gradientSpan(text, grad) {
+    return grad
+      ? `<span style="background:${grad}; -webkit-background-clip:text; background-clip:text; color:transparent; -webkit-text-fill-color:transparent;">${text}</span>`
+      : `<span>${text}</span>`;
+  }
+  function roleSpan(role) {
+    return gradientSpan(role, roleGradient(role));
+  }
+  // Card/profile body background: colored gradient scrim over the themed art, so text stays readable
+  // while the artwork itself stays visible.
+  function bodyBgStyle(color, bgImage) {
+    if (bgImage) {
+      const scrim = `linear-gradient(165deg, ${color}8c 0%, #00000099 55%, #000000e6 100%)`;
+      return `background-image: ${scrim}, url('${bgImage}'); background-size: cover; background-position: center;`;
+    }
+    return `background-image: linear-gradient(165deg, ${color} 0%, #050505 82%);`;
+  }
+
+  const galaxyW = bubblesField.clientWidth || window.innerWidth;
+  const galaxyH = bubblesField.clientHeight || 1400;
+
+  // ---- community stats: total creators + total messages across everyone with data ----
+  (function renderCommunityStats() {
+    const statsEl = document.getElementById("community-stats");
+    if (!statsEl) return;
+    let totalMessages = 0;
+    let knownCreators = 0;
+    Object.values(overrides).forEach(ov => {
+      if (!ov || !ov.desc) return;
+      const lines = Array.isArray(ov.desc) ? ov.desc : [ov.desc];
+      const msgLine = lines.find(l => /messages/i.test(l));
+      if (msgLine) {
+        const num = parseInt(msgLine.replace(/[^0-9]/g, ""), 10);
+        if (!isNaN(num)) totalMessages += num;
+      }
+      knownCreators++;
+    });
+    statsEl.textContent = `${TOTAL} creators · ${totalMessages.toLocaleString("en-US")} total messages`;
+  })();
+
+  for (let i = 1; i <= TOTAL; i++) {
+    const ov = overrides[i] || {};
+    const name = ov.nick || ("Person " + i);
+    const nick = ov.nick || ("@user" + i);
+    const role = ov.role !== undefined ? ov.role : "Role";
+    const descLines = ov.desc ? (Array.isArray(ov.desc) ? ov.desc : [ov.desc]) : ["Short bio for person " + i + "."];
+    const photo = ov.photo || null;
+    const color = ov.accent || palette[i % palette.length];
+    const size = Math.round(rand(56, 92));
+
+    // ---- bubble (positioned on a rotating orbit ring, galaxy-style) ----
+    const RINGS = 5;
+    const ringIndex = i % RINGS;
+    const ringHalfMin = Math.min(galaxyW, galaxyH) / 2;
+    const baseRadius = ringHalfMin * (0.16 + ringIndex * 0.19);
+    const radius = baseRadius * rand(0.94, 1.06);
+    const slotsInRing = Math.ceil(TOTAL / RINGS);
+    const slotIndexInRing = Math.floor(i / RINGS);
+    const angle0 = (360 / slotsInRing) * slotIndexInRing + rand(-8, 8);
+    const duration = 22 + ringIndex * 11; // inner rings orbit faster, like a galaxy
+    const armX = radius * Math.cos(angle0 * Math.PI / 180);
+    const armY = radius * Math.sin(angle0 * Math.PI / 180);
+
+    const orbit = document.createElement("div");
+    orbit.className = "orbit";
+    orbit.style.animationDuration = duration + "s";
+
+    const arm = document.createElement("div");
+    arm.className = "orbit-arm";
+    arm.style.transform = `translate(${armX}px, ${armY}px)`;
+
+    const counter = document.createElement("div");
+    counter.className = "bubble-counter";
+    counter.style.animationDuration = duration + "s";
+
+    const center = document.createElement("div");
+    center.className = "bubble-center";
+
+    const wrap = document.createElement("div");
+    wrap.className = "bubble-wrap";
+    wrap.id = "bubble-" + i;
+
+    const bubble = document.createElement("div");
+    bubble.className = "bubble";
+    bubble.style.width = size + "px";
+    bubble.style.height = size + "px";
+    if (photo) {
+      bubble.style.backgroundImage = `url('${photo}')`;
+    } else {
+      bubble.style.background = color;
+      bubble.textContent = "?";
+    }
+
+    const nickTag = document.createElement("div");
+    nickTag.className = "bubble-nick";
+    nickTag.textContent = nick;
+
+    wrap.appendChild(bubble);
+    wrap.appendChild(nickTag);
+    center.appendChild(wrap);
+    counter.appendChild(center);
+    arm.appendChild(counter);
+    orbit.appendChild(arm);
+    bubblesField.appendChild(orbit);
+
+    wrap.addEventListener("click", () => { playChime(); openProfile(i); });
+
+    // ---- card (grid at the bottom of the page) ----
+    const card = document.createElement("div");
+    card.className = "card";
+    card.id = "card-" + i;
+    card.dataset.role = role || "";
+    const imgTag = photo ? `<img src="${photo}" alt="${name}">` : `<img alt="${name}">`;
+    const descHtml = descLines.map(line => `<p>${line}</p>`).join("");
+    const roleIconSrc = ov.roleEmoji || roleIcon(role);
+    const emojiHtml = roleIconSrc ? `<img class="role-emoji" src="${roleIconSrc}" alt="">` : "";
+    const roleHtml = role ? `<p class="role">${roleSpan(role)}${emojiHtml}</p>` : "";
+    const nameHtml = name; // white nick with a dark shadow (set in CSS); role text keeps its own color
+    card.innerHTML = `
+      ${imgTag}
+      <div class="card-body" style="${bodyBgStyle(color, ov.bgImage)}">
+        <h3>${nameHtml}</h3>
+        ${roleHtml}
+        ${descHtml}
+      </div>
+    `;
+    card.addEventListener("click", () => openProfile(i));
+    cardsGrid.appendChild(card);
+  }
+
+  // ---- leaderboard: rank creators by messages or by content count ----
+  (function initLeaderboard() {
+    const listEl = document.getElementById("leaderboard-list");
+    if (!listEl) return;
+
+    const stats = [];
+    Object.entries(overrides).forEach(([id, ov]) => {
+      if (!ov || !ov.desc) return;
+      const lines = Array.isArray(ov.desc) ? ov.desc : [ov.desc];
+      const msgLine = lines.find(l => /messages/i.test(l));
+      const contentLine = lines.find(l => /content/i.test(l));
+      const messages = msgLine ? parseInt(msgLine.replace(/[^0-9]/g, ""), 10) : 0;
+      const content = contentLine ? parseInt(contentLine.replace(/[^0-9]/g, ""), 10) : 0;
+      stats.push({
+        id: parseInt(id, 10),
+        nick: ov.nick || ("Person " + id),
+        photo: ov.photo || "",
+        messages: isNaN(messages) ? 0 : messages,
+        content: isNaN(content) ? 0 : content
+      });
+    });
+
+    function renderLeaderboard(metric) {
+      const sorted = stats.slice().sort((a, b) => b[metric] - a[metric]).slice(0, 10);
+      listEl.innerHTML = sorted.map((s, idx) => {
+        const rank = idx + 1;
+        const topClass = rank === 1 ? "top1" : rank === 2 ? "top2" : rank === 3 ? "top3" : "";
+        const value = s[metric].toLocaleString("en-US") + (metric === "messages" ? " messages" : " content");
+        const avatarTag = s.photo ? `<img class="lb-avatar" src="${s.photo}" alt="${s.nick}">` : `<div class="lb-avatar"></div>`;
+        return `
+          <div class="lb-row ${topClass}" data-id="${s.id}">
+            <div class="lb-rank">#${rank}</div>
+            ${avatarTag}
+            <div class="lb-name">${s.nick}</div>
+            <div class="lb-value">${value}</div>
+          </div>
+        `;
+      }).join("");
+      listEl.querySelectorAll(".lb-row").forEach(row => {
+        row.addEventListener("click", () => {
+          const id = parseInt(row.dataset.id, 10);
+          playChime();
+          openProfile(id);
+        });
+      });
+    }
+
+    renderLeaderboard("messages");
+
+    document.querySelectorAll(".leaderboard-tab").forEach(tab => {
+      tab.addEventListener("click", () => {
+        document.querySelectorAll(".leaderboard-tab").forEach(t => t.classList.remove("active"));
+        tab.classList.add("active");
+        renderLeaderboard(tab.dataset.metric);
+      });
+    });
+  })();
+
+  // ---- role filter: show only cards matching the selected role ----
+  (function initRoleFilters() {
+    const filtersEl = document.getElementById("role-filters");
+    if (!filtersEl) return;
+
+    const rolesInOrder = ["Ritualist", "Ritty", "Radiant Ritualist", "Mod", "Team"];
+    const presentRoles = new Set();
+    Object.values(overrides).forEach(ov => { if (ov && ov.role) presentRoles.add(ov.role); });
+    const roles = rolesInOrder.filter(r => presentRoles.has(r));
+    // include any role not in the known list too, just in case
+    presentRoles.forEach(r => { if (!roles.includes(r)) roles.push(r); });
+
+    const allBtn = `<button class="role-filter-btn active" data-role="all" type="button">All</button>`;
+    const roleBtns = roles.map(r => `<button class="role-filter-btn" data-role="${r}" type="button">${r}</button>`).join("");
+    filtersEl.innerHTML = allBtn + roleBtns;
+
+    filtersEl.querySelectorAll(".role-filter-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        filtersEl.querySelectorAll(".role-filter-btn").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        const chosen = btn.dataset.role;
+        cardsGrid.querySelectorAll(".card").forEach(card => {
+          card.style.display = (chosen === "all" || card.dataset.role === chosen) ? "" : "none";
+        });
+      });
+    });
+  })();
+
+  // ---- profile modal ----
+  const modalOverlay = document.getElementById("modal-overlay");
+  const modalBox = document.getElementById("modal-box");
+
+  function openProfile(i) {
+    const ov = overrides[i] || {};
+    const name = ov.nick || ("Person " + i);
+    const role = ov.role !== undefined ? ov.role : "Role";
+    const descLines = ov.desc ? (Array.isArray(ov.desc) ? ov.desc : [ov.desc]) : ["Short bio for person " + i + "."];
+    const photo = ov.photo || null;
+    const accentColor = ov.accent || palette[i % palette.length];
+    const imgTag = photo ? `<img src="${photo}" alt="${name}">` : `<img alt="${name}">`;
+    const descHtml = descLines.map(line => `<p>${line}</p>`).join("");
+    const roleIconSrc = ov.roleEmoji || roleIcon(role);
+    const emojiHtml = roleIconSrc ? `<img class="role-emoji" src="${roleIconSrc}" alt="">` : "";
+    const roleHtml = role ? `<p class="role">${roleSpan(role)}${emojiHtml}</p>` : "";
+    const twitterHtml = ov.twitter ? `<a class="twitter-link" href="${ov.twitter}" target="_blank" rel="noopener noreferrer">𝕏 View on X</a>` : "";
+    const nameHtml = name; // white nick with a dark shadow (set in CSS); role text keeps its own color
+    const selfTagHtml = ov.selfTag ? `<div class="self-tag">${ov.selfTag}</div>` : "";
+
+    // "Share on X" — opens a pre-filled tweet intent, always crediting @StillhazeE
+    const shareText = `Check out my card as ${name} on the Ritual Creators map! 🔮 via @StillhazeE`;
+    const shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(window.location.href)}`;
+    const shareHtml = `<a class="share-link" href="${shareUrl}" target="_blank" rel="noopener noreferrer">𝕏 Share my card</a>`;
+    const downloadHtml = `<button class="download-link" id="download-card-btn" type="button">⬇ Download card</button>`;
+
+    modalBox.innerHTML = `
+      <button class="modal-close" id="modal-close">✕</button>
+      ${imgTag}
+      <div class="modal-body" style="${bodyBgStyle(accentColor, ov.bgImage)}">
+        ${selfTagHtml}
+        <h3>${nameHtml}</h3>
+        ${roleHtml}
+        ${descHtml}
+        <div class="modal-actions">
+          ${twitterHtml}
+          ${shareHtml}
+          ${downloadHtml}
+        </div>
+      </div>
+    `;
+    modalOverlay.classList.add("open");
+    document.getElementById("modal-close").addEventListener("click", closeProfile);
+    const dlBtn = document.getElementById("download-card-btn");
+    if (dlBtn) dlBtn.addEventListener("click", () => downloadCard(i));
+  }
+
+  // ---- "Download card" — renders the profile as a shareable PNG image via canvas ----
+  function loadImg(src) {
+    return new Promise((resolve) => {
+      if (!src) { resolve(null); return; }
+      const img = new Image();
+      img.crossOrigin = "anonymous";
+      img.onload = () => resolve(img);
+      img.onerror = () => resolve(null);
+      img.src = src;
+    });
+  }
+
+  function extractGradientColors(gradientCss) {
+    if (!gradientCss) return null;
+    const hex = gradientCss.match(/#[0-9a-fA-F]{3,8}/g);
+    if (!hex || hex.length < 2) return null;
+    return [hex[0], hex[hex.length - 1]];
+  }
+
+  async function downloadCard(i) {
+    const ov = overrides[i] || {};
+    const name = ov.nick || ("Person " + i);
+    const role = ov.role !== undefined ? ov.role : "Role";
+    const descLines = ov.desc ? (Array.isArray(ov.desc) ? ov.desc : [ov.desc]) : [];
+    const accentColor = ov.accent || palette[i % palette.length];
+    const roleIconSrc = ov.roleEmoji || roleIcon(role);
+    const roleGrad = extractGradientColors(roleGradient(role));
+
+    const W = 720, H = 960;
+    const canvas = document.createElement("canvas");
+    canvas.width = W; canvas.height = H;
+    const ctx = canvas.getContext("2d");
+
+    const [bgImg, photoImg, roleImg] = await Promise.all([
+      loadImg(ov.bgImage), loadImg(ov.photo), loadImg(roleIconSrc)
+    ]);
+
+    // ---- background ----
+    if (bgImg) {
+      const scale = Math.max(W / bgImg.width, H / bgImg.height);
+      const sw = W / scale, sh = H / scale;
+      const sx = (bgImg.width - sw) / 2, sy = (bgImg.height - sh) / 2;
+      ctx.drawImage(bgImg, sx, sy, sw, sh, 0, 0, W, H);
+    } else {
+      const g = ctx.createLinearGradient(0, 0, 0, H);
+      g.addColorStop(0, accentColor);
+      g.addColorStop(1, "#050505");
+      ctx.fillStyle = g;
+      ctx.fillRect(0, 0, W, H);
+    }
+    // dark scrim so text stays readable, heavier toward the bottom
+    const scrim = ctx.createLinearGradient(0, 0, 0, H);
+    scrim.addColorStop(0, "rgba(0,0,0,0.15)");
+    scrim.addColorStop(0.45, "rgba(0,0,0,0.55)");
+    scrim.addColorStop(1, "rgba(0,0,0,0.92)");
+    ctx.fillStyle = scrim;
+    ctx.fillRect(0, 0, W, H);
+
+    // ---- avatar ----
+    const avatarR = 130;
+    const avatarCx = W / 2, avatarCy = 250;
+    ctx.save();
+    ctx.beginPath();
+    ctx.arc(avatarCx, avatarCy, avatarR, 0, Math.PI * 2);
+    ctx.closePath();
+    ctx.shadowColor = "rgba(0,0,0,0.5)";
+    ctx.shadowBlur = 30;
+    ctx.fillStyle = "#222";
+    ctx.fill();
+    ctx.restore();
+    ctx.save();
+    ctx.beginPath();
+    ctx.arc(avatarCx, avatarCy, avatarR, 0, Math.PI * 2);
+    ctx.closePath();
+    ctx.clip();
+    if (photoImg) {
+      const scale = Math.max((avatarR * 2) / photoImg.width, (avatarR * 2) / photoImg.height);
+      const sw = (avatarR * 2) / scale, sh = (avatarR * 2) / scale;
+      const sx = (photoImg.width - sw) / 2, sy = (photoImg.height - sh) / 2;
+      ctx.drawImage(photoImg, sx, sy, sw, sh, avatarCx - avatarR, avatarCy - avatarR, avatarR * 2, avatarR * 2);
+    }
+    ctx.restore();
+    ctx.beginPath();
+    ctx.arc(avatarCx, avatarCy, avatarR, 0, Math.PI * 2);
+    ctx.lineWidth = 6;
+    ctx.strokeStyle = "rgba(255,255,255,0.85)";
+    ctx.stroke();
+
+    // ---- name ----
+    ctx.textAlign = "center";
+    ctx.shadowColor = "rgba(0,0,0,0.8)";
+    ctx.shadowBlur = 10;
+    ctx.fillStyle = "#ffffff";
+    ctx.font = "700 46px Inter, Arial, sans-serif";
+    ctx.fillText(name, W / 2, 470);
+    ctx.shadowBlur = 0;
+
+    // ---- role (colored, with icon) ----
+    let roleY = 525;
+    ctx.font = "400 30px Inter, Arial, sans-serif";
+    const roleTextWidth = ctx.measureText(role).width;
+    const iconSize = 30;
+    const gap = 8;
+    const totalW = roleTextWidth + (roleImg ? iconSize + gap : 0);
+    let cursorX = W / 2 - totalW / 2;
+    if (roleGrad) {
+      const rg = ctx.createLinearGradient(cursorX, 0, cursorX + roleTextWidth, 0);
+      rg.addColorStop(0, roleGrad[0]);
+      rg.addColorStop(1, roleGrad[1]);
+      ctx.fillStyle = rg;
+    } else {
+      ctx.fillStyle = "rgba(255,255,255,0.85)";
+    }
+    ctx.textAlign = "left";
+    ctx.shadowColor = "rgba(0,0,0,0.8)";
+    ctx.shadowBlur = 8;
+    ctx.fillText(role, cursorX, roleY + 10);
+    ctx.shadowBlur = 0;
+    if (roleImg) {
+      ctx.drawImage(roleImg, cursorX + roleTextWidth + gap, roleY - iconSize + 14, iconSize, iconSize);
+    }
+
+    // ---- stat lines ----
+    ctx.textAlign = "center";
+    ctx.font = "400 26px Inter, Arial, sans-serif";
+    ctx.fillStyle = "rgba(255,255,255,0.9)";
+    ctx.shadowColor = "rgba(0,0,0,0.8)";
+    ctx.shadowBlur = 6;
+    let statY = 585;
+    descLines.forEach(line => {
+      ctx.fillText(line, W / 2, statY);
+      statY += 36;
+    });
+    ctx.shadowBlur = 0;
+
+    // ---- footer watermark ----
+    ctx.font = "600 20px Inter, Arial, sans-serif";
+    ctx.fillStyle = "rgba(255,255,255,0.55)";
+    ctx.fillText("Ritual Creators", W / 2, H - 34);
+
+    canvas.toBlob((blob) => {
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `${name.replace(/[^a-z0-9]+/gi, "_")}-ritual-card.png`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }, "image/png");
+  }
+
+  function closeProfile() {
+    modalOverlay.classList.remove("open");
+  }
+
+  modalOverlay.addEventListener("click", (e) => {
+    if (e.target === modalOverlay) closeProfile();
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeProfile();
+  });
+</script>
+
+</body>
+</html>
