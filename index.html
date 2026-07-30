@@ -2267,19 +2267,19 @@
     const name = ov.nick || ("Person " + i);
     const text = shareTweetText(name);
     const originalLabel = btn ? btn.textContent : null;
-    if (btn) { btn.textContent = "Preparing card..."; btn.disabled = true; }
+
+    // X's tweet-compose intent has no parameter for attaching media — no website can
+    // auto-attach an image to a tweet, that's an X platform restriction, not ours.
+    // So we open a pre-filled tweet on X immediately (must happen synchronously, in the
+    // same click, or the browser's popup blocker silently kills it) and separately
+    // download the card image so it's one drag/attach away in the X compose box.
+    const shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
+    window.open(shareUrl, "_blank", "noopener,noreferrer");
+
+    if (btn) { btn.textContent = "Saving card..."; btn.disabled = true; }
     try {
       const blob = await renderCardBlob(i);
       const fileName = `${name.replace(/[^a-z0-9]+/gi, "_")}-ritual-card.png`;
-      const file = new File([blob], fileName, { type: "image/png" });
-
-      if (navigator.canShare && navigator.canShare({ files: [file] })) {
-        await navigator.share({ files: [file], text });
-        return;
-      }
-
-      // Fallback: X's web intent can't attach media automatically, so we download the
-      // card image and open a pre-filled tweet — the image just needs one manual attach.
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
@@ -2288,10 +2288,8 @@
       a.click();
       document.body.removeChild(a);
       URL.revokeObjectURL(url);
-      const shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
-      window.open(shareUrl, "_blank", "noopener,noreferrer");
     } catch (err) {
-      // user cancelled the native share sheet — no action needed
+      // card rendering failed — the X tab with the caption is still open and usable
     } finally {
       if (btn) { btn.textContent = originalLabel; btn.disabled = false; }
     }
