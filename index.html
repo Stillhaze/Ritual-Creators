@@ -181,9 +181,7 @@
     z-index: 2;
     width: 100%;
     height: 1400px;
-    perspective: 1400px;
-    transition: transform 0.2s ease-out;
-    will-change: transform;
+    perspective: 1000px;
   }
   .orbit {
     position: absolute;
@@ -194,7 +192,6 @@
     animation-name: orbitSpin;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
-    transform-style: preserve-3d;
   }
   .orbit-arm {
     position: absolute;
@@ -202,7 +199,6 @@
     left: 0;
     width: 0;
     height: 0;
-    transform-style: preserve-3d;
   }
   .bubble-counter {
     position: absolute;
@@ -213,14 +209,12 @@
     animation-name: counterSpin;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
-    transform-style: preserve-3d;
   }
   .bubble-center {
     position: absolute;
     top: 0;
     left: 0;
     transform: translate(-50%, -50%);
-    transform-style: preserve-3d;
   }
   @keyframes orbitSpin {
     from { transform: rotate(0deg); }
@@ -236,12 +230,6 @@
     align-items: center;
     gap: 6px;
     cursor: pointer;
-    transform-style: preserve-3d;
-    animation: bubbleFloat 4.5s ease-in-out infinite;
-  }
-  @keyframes bubbleFloat {
-    0%, 100% { translate: 0 0; }
-    50% { translate: 0 -9px; }
   }
   .bubble {
     border-radius: 50%;
@@ -258,12 +246,8 @@
     transition: transform 0.25s ease, box-shadow 0.25s ease;
   }
   .bubble-wrap:hover .bubble {
-    transform: scale(1.12) translateZ(30px);
+    transform: scale(1.12);
     box-shadow: 0 10px 28px rgba(124,140,255,0.5), inset 0 0 0 2px rgba(255,255,255,0.4);
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .bubble-wrap { animation: none !important; }
-    .bubbles-field { transform: none !important; }
   }
   .bubble-nick {
     color: #dfe1ff;
@@ -332,13 +316,11 @@
   .about-section {
     position: relative;
     overflow: hidden;
-    perspective: 1200px;
     background-image:
       linear-gradient(180deg, rgba(5,6,15,0.35) 0%, rgba(8,9,20,0.45) 50%, rgba(5,6,15,0.55) 100%),
       url('about-bg.jpg');
     background-size: cover;
     background-position: center;
-    background-attachment: fixed;
     padding: 64px 20px 60px;
     text-align: center;
   }
@@ -352,23 +334,6 @@
     color: #c7c9e6;
     font-size: 1rem;
     line-height: 1.75;
-    background: rgba(10,10,22,0.45);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    border: 1px solid rgba(255,255,255,0.14);
-    border-radius: 22px;
-    padding: 34px 32px;
-    box-shadow: 0 24px 60px rgba(0,0,0,0.45);
-    transform-style: preserve-3d;
-  }
-  .about-content.reveal-3d.in-view {
-    transform: perspective(1400px)
-      rotateX(calc(var(--tilt-y, 0) * 1deg))
-      rotateY(calc(var(--tilt-x, 0) * 1deg))
-      translateZ(0);
-  }
-  @media (max-width: 640px) {
-    .about-section { background-attachment: scroll; }
   }
   .about-content p {
     margin: 0 0 16px;
@@ -428,13 +393,6 @@
     box-shadow: 0 20px 60px rgba(0,0,0,0.6);
     padding: 30px 20px 20px;
     text-align: center;
-    transform-style: preserve-3d;
-  }
-  #apply-modal-overlay.open .apply-modal-box {
-    animation: cardReveal 0.7s cubic-bezier(.2,.8,.2,1) both;
-  }
-  @media (prefers-reduced-motion: reduce) {
-    #apply-modal-overlay.open .apply-modal-box { animation: none !important; }
   }
   .apply-modal-box h3 {
     margin: 0 0 6px;
@@ -538,27 +496,12 @@
     border: 1px solid rgba(255,255,255,0.1);
     border-radius: 14px;
     cursor: pointer;
-    transition: background 0.2s ease, transform 0.3s cubic-bezier(.2,.8,.2,1), box-shadow 0.3s ease;
+    transition: background 0.2s ease, transform 0.2s ease;
     text-align: left;
-    transform-style: preserve-3d;
-    animation: lbRowIn 0.55s cubic-bezier(.2,.8,.2,1) backwards;
-    animation-delay: var(--lb-delay, 0ms);
   }
   .lb-row:hover {
     background: rgba(172,109,55,0.18);
-    transform: translateX(4px) translateZ(30px) scale(1.03) !important;
-    box-shadow: 0 14px 30px rgba(0,0,0,0.4);
-    z-index: 5;
-  }
-  .lb-row.top1 { transform: translateZ(56px) scale(1.06); box-shadow: 0 10px 26px rgba(255,213,79,0.25); }
-  .lb-row.top2 { transform: translateZ(32px) scale(1.03); box-shadow: 0 8px 20px rgba(215,215,215,0.18); }
-  .lb-row.top3 { transform: translateZ(14px) scale(1.01); box-shadow: 0 6px 16px rgba(227,154,92,0.18); }
-  @keyframes lbRowIn {
-    0%   { opacity: 0; transform: translateX(50px) rotateY(35deg) translateZ(-80px); }
-    100% { opacity: 1; transform: translateX(0) rotateY(0deg) translateZ(0); }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .lb-row { animation: none !important; }
+    transform: translateX(4px);
   }
   .lb-rank {
     width: 30px;
@@ -666,7 +609,6 @@
   .designs-row {
     position: relative;
     overflow: hidden;
-    perspective: 1000px;
     -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%);
     mask-image: linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%);
   }
@@ -677,8 +619,6 @@
     width: max-content;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
-    transform-style: preserve-3d;
-    transform: rotateX(10deg);
   }
   .designs-row.row-rtl .designs-track {
     animation-name: designsScrollLeft;
@@ -703,16 +643,12 @@
     object-fit: cover;
     border-radius: 12px;
     box-shadow: 0 4px 16px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.1);
-    transition: transform 0.3s cubic-bezier(.2,.8,.2,1), box-shadow 0.3s ease;
-    transform-style: preserve-3d;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
     flex-shrink: 0;
   }
   .designs-track img:hover {
-    transform: translateY(-10px) translateZ(70px) rotateX(-10deg) scale(1.08);
-    box-shadow: 0 20px 40px rgba(124,140,255,0.4), 0 0 0 1px rgba(255,255,255,0.3);
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .designs-track { transform: none !important; }
+    transform: translateY(-4px) scale(1.04);
+    box-shadow: 0 10px 24px rgba(124,140,255,0.35), 0 0 0 1px rgba(255,255,255,0.25);
   }
   .designs-empty {
     position: relative;
@@ -752,23 +688,6 @@
   .card.highlight {
     outline: 3px solid #fff;
     transform: translateY(-4px);
-  }
-  .card.reveal-3d {
-    transform: perspective(1000px) rotateX(22deg) translateY(30px) translateZ(-160px);
-    transition: opacity 0.7s cubic-bezier(.2,.8,.2,1), transform 0.7s cubic-bezier(.2,.8,.2,1);
-    transition-delay: var(--card-delay, 0ms);
-  }
-  .card.reveal-3d.in-view {
-    transform: perspective(1000px) rotateX(0deg) translateY(0) translateZ(0);
-    animation: cardIdleFloat 5s ease-in-out infinite;
-    animation-delay: var(--card-delay, 0ms);
-  }
-  @keyframes cardIdleFloat {
-    0%, 100% { translate: 0 0px; }
-    50%      { translate: 0 -6px; }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .card.reveal-3d.in-view { animation: none !important; }
   }
   .card > img {
     width: 100%;
@@ -1030,49 +949,13 @@
     margin: 0 0 6px;
   }
   .section-divider {
-    height: 3px;
+    height: 2px;
     width: min(560px, 70%);
-    margin: 46px auto;
+    margin: 0 auto;
     background: linear-gradient(90deg, transparent, #7c8cff, #b8bcff, #7c8cff, transparent);
     box-shadow: 0 0 16px 3px rgba(124,140,255,0.55);
     position: relative;
     z-index: 3;
-    transform: perspective(600px) rotateX(62deg);
-  }
-  .section-divider::after {
-    content: "";
-    position: absolute;
-    top: -7px;
-    left: 6%;
-    right: 6%;
-    height: 16px;
-    background: radial-gradient(ellipse at center, rgba(184,188,255,0.55), transparent 72%);
-    filter: blur(3px);
-    animation: dividerPulse 3.2s ease-in-out infinite;
-  }
-  @keyframes dividerPulse {
-    0%, 100% { opacity: 0.4; transform: scaleX(0.92); }
-    50%      { opacity: 1;   transform: scaleX(1.05); }
-  }
-
-  /* ---------- RevealEngine: shared 3D scroll-reveal used across every section ---------- */
-  .reveal-3d {
-    opacity: 0;
-    transform: perspective(1400px) rotateX(18deg) translateY(36px) translateZ(-200px);
-    transition: opacity 0.85s cubic-bezier(.2,.8,.2,1), transform 0.9s cubic-bezier(.2,.8,.2,1);
-    will-change: transform, opacity;
-  }
-  .reveal-3d.in-view {
-    opacity: 1;
-    transform: perspective(1400px) rotateX(0deg) translateY(0) translateZ(0);
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .section-divider, .section-divider::after { animation: none !important; transform: none !important; }
-    .reveal-3d {
-      opacity: 1 !important;
-      transform: none !important;
-      transition: none !important;
-    }
   }
 
   /* ---------- PageEraseEffect: right-click "erases the color" of the real page ---------- */
@@ -1257,8 +1140,8 @@
 <div class="section-divider"></div>
 
 <section class="designs-section">
-  <h2 class="reveal-3d">Ritual Community Designs</h2>
-  <p class="designs-sub reveal-3d">Fan art and designs made by the community</p>
+  <h2>Ritual Community Designs</h2>
+  <p class="designs-sub">Fan art and designs made by the community</p>
   <div class="designs-rows" id="designs-rows"></div>
 </section>
 
@@ -1268,9 +1151,9 @@
   <div class="lb-stars-bg" id="lb-stars-bg"></div>
   <div class="lb-cutout"></div>
   <div class="leaderboard-content">
-    <h2 class="reveal-3d">Leaderboard</h2>
-    <p class="leaderboard-sub reveal-3d">The most active creators in the community</p>
-    <div class="leaderboard-tabs reveal-3d">
+    <h2>Leaderboard</h2>
+    <p class="leaderboard-sub">The most active creators in the community</p>
+    <div class="leaderboard-tabs">
       <button class="leaderboard-tab active" data-metric="messages" type="button">By Messages</button>
       <button class="leaderboard-tab" data-metric="content" type="button">By Content</button>
     </div>
@@ -1282,7 +1165,7 @@
 
 <section class="cards-section">
   <div class="stars-bg" id="stars-bg"></div>
-  <h2 class="reveal-3d">62 Ritual Creators <img src="logo.png" alt="Ritual logo" class="section-logo"></h2>
+  <h2>62 Ritual Creators <img src="logo.png" alt="Ritual logo" class="section-logo"></h2>
   <div class="role-filters" id="role-filters"></div>
   <div class="grid" id="cards-grid"></div>
 </section>
@@ -1290,18 +1173,18 @@
 <div class="section-divider"></div>
 
 <section class="about-section">
-  <h2 class="reveal-3d">About the Community</h2>
-  <div class="about-content reveal-3d">
+  <h2>About the Community</h2>
+  <div class="about-content">
     <p>Ritual is a lab for autonomous intelligence — building the infrastructure that lets autonomous agents persist, hold and spend their own money, keep secrets under adversarial conditions, and keep operating long after the person who launched them has moved on. That work spans four research frontiers — Artificial Intelligence, Mechanism Design, Systems, and Cryptography — and comes together in Ritual Chain, the execution layer where that autonomy becomes real.</p>
     <p>This page belongs to the people building that future alongside the core team: the Ritual Creators. Ritualists, Rittys, Radiant Ritualists, Mods, and Team members who share ideas, make content, and grow the community every day across Discord, X, and beyond. Every creator on this page is a real member of that community.</p>
   </div>
-  <div class="about-links reveal-3d">
+  <div class="about-links">
     <a href="https://ritual.net/vision" target="_blank" rel="noopener">Vision</a>
     <a href="https://docs.ritualfoundation.org" target="_blank" rel="noopener">Docs</a>
     <a href="https://github.com/ritual-net" target="_blank" rel="noopener">GitHub</a>
     <a href="https://discord.gg/ritual-net" target="_blank" rel="noopener">Discord</a>
   </div>
-  <div class="reveal-3d">
+  <div>
     <button class="apply-btn" id="apply-btn" type="button">Apply to become a Creator</button>
   </div>
 </section>
@@ -1402,27 +1285,6 @@
   const bubblesField = document.getElementById("bubbles-field");
   const cardsGrid = document.getElementById("cards-grid");
   const designsRows = document.getElementById("designs-rows");
-
-  // ---- hero galaxy: whole field tilts gently toward the cursor, like looking into a 3D diorama ----
-  (function initHeroParallax() {
-    const heroEl = document.querySelector(".hero");
-    if (!heroEl || !bubblesField) return;
-    if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    let raf = null;
-    heroEl.addEventListener("mousemove", (e) => {
-      if (raf) return;
-      raf = requestAnimationFrame(() => {
-        const r = heroEl.getBoundingClientRect();
-        const px = (e.clientX - r.left) / r.width - 0.5;
-        const py = (e.clientY - r.top) / Math.max(r.height, 1) - 0.5;
-        bubblesField.style.transform = `rotateX(${(-py * 8).toFixed(2)}deg) rotateY(${(px * 8).toFixed(2)}deg)`;
-        raf = null;
-      });
-    });
-    heroEl.addEventListener("mouseleave", () => {
-      bubblesField.style.transform = "";
-    });
-  })();
 
   // Community fan-art / designs. Add entries like { image: "designs/29.webp" } as they come in.
   const designs = [];
@@ -2311,7 +2173,6 @@
     const duration = 22 + ringIndex * 11; // inner rings orbit faster, like a galaxy
     const armX = radius * Math.cos(angle0 * Math.PI / 180);
     const armY = radius * Math.sin(angle0 * Math.PI / 180);
-    const armZ = ((RINGS - 1) / 2 - ringIndex) * 70; // inner rings float closer to the viewer, outer rings recede
 
     const orbit = document.createElement("div");
     orbit.className = "orbit";
@@ -2319,7 +2180,7 @@
 
     const arm = document.createElement("div");
     arm.className = "orbit-arm";
-    arm.style.transform = `translate(${armX}px, ${armY}px) translateZ(${armZ}px)`;
+    arm.style.transform = `translate(${armX}px, ${armY}px)`;
 
     const counter = document.createElement("div");
     counter.className = "bubble-counter";
@@ -2331,8 +2192,6 @@
     const wrap = document.createElement("div");
     wrap.className = "bubble-wrap";
     wrap.id = "bubble-" + i;
-    wrap.style.animationDuration = (3.5 + rand(0, 2.5)) + "s";
-    wrap.style.animationDelay = -(rand(0, 4)) + "s";
 
     const bubble = document.createElement("div");
     bubble.className = "bubble";
@@ -2361,10 +2220,9 @@
 
     // ---- card (grid at the bottom of the page) ----
     const card = document.createElement("div");
-    card.className = "card reveal-3d";
+    card.className = "card";
     card.id = "card-" + i;
     card.dataset.role = role || "";
-    card.style.setProperty("--card-delay", ((i % 8) * 70) + "ms");
     const imgTag = photo ? `<img src="${photo}" alt="${name}">` : `<img alt="${name}">`;
     const descHtml = descLines.map(line => `<p>${line}</p>`).join("");
     const roleIconSrc = ov.roleEmoji || roleIcon(role);
@@ -2413,7 +2271,7 @@
         const value = s[metric].toLocaleString("en-US") + (metric === "messages" ? " messages" : " content");
         const avatarTag = s.photo ? `<img class="lb-avatar" src="${s.photo}" alt="${s.nick}">` : `<div class="lb-avatar"></div>`;
         return `
-          <div class="lb-row ${topClass}" data-id="${s.id}" style="--lb-delay:${idx * 45}ms">
+          <div class="lb-row ${topClass}" data-id="${s.id}">
             <div class="lb-rank">#${rank}</div>
             ${avatarTag}
             <div class="lb-name">${s.nick}</div>
@@ -2969,50 +2827,6 @@
     return { init };
   })();
   SidebarPanel.init();
-
-  // ================= RevealEngine: shared 3D scroll-reveal used across every section =================
-  const RevealEngine = (function () {
-    function init() {
-      const els = document.querySelectorAll(".reveal-3d");
-      if (!els.length) return;
-      if (prefersReducedMotion()) {
-        els.forEach((el) => el.classList.add("in-view"));
-        return;
-      }
-      const io = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          entry.target.classList.toggle("in-view", entry.isIntersecting);
-        });
-      }, { threshold: 0.12 });
-      els.forEach((el) => io.observe(el));
-    }
-    return { init };
-  })();
-  RevealEngine.init();
-
-  // ---- about section: glass panel tilts gently toward the cursor ----
-  (function initAboutTilt() {
-    const aboutSection = document.querySelector(".about-section");
-    const aboutContent = document.querySelector(".about-content");
-    if (!aboutSection || !aboutContent) return;
-    if (prefersReducedMotion()) return;
-    let raf = null;
-    aboutSection.addEventListener("mousemove", (e) => {
-      if (raf) return;
-      raf = requestAnimationFrame(() => {
-        const r = aboutContent.getBoundingClientRect();
-        const px = (e.clientX - r.left) / Math.max(r.width, 1) - 0.5;
-        const py = (e.clientY - r.top) / Math.max(r.height, 1) - 0.5;
-        aboutContent.style.setProperty("--tilt-x", (px * 7).toFixed(2));
-        aboutContent.style.setProperty("--tilt-y", (-py * 7).toFixed(2));
-        raf = null;
-      });
-    });
-    aboutSection.addEventListener("mouseleave", () => {
-      aboutContent.style.setProperty("--tilt-x", 0);
-      aboutContent.style.setProperty("--tilt-y", 0);
-    });
-  })();
 </script>
 
 </body>
